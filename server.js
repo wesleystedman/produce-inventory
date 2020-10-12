@@ -6,7 +6,7 @@ const logger = require('morgan');
 const app = express();
 
 require('dotenv').config();
-// require('./config/database');
+require('./express-src/config/database');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -15,13 +15,13 @@ app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'build')));
 
 // Unprotected API routes
-// app.use('/api/users', require('./routes/api/users'));
+// app.use('/api/users', require('./express-src/routes/api/users'));
 
 // Mount auth middleware
-// app.use(require('./config/auth'));
+// app.use(require('./express-src/config/auth'));
 
 // Protected API routes
-// app.use('/api/scores', require('./routes/api/scores'));
+// app.use('/api/scores', require('./express-src/routes/api/scores'));
 
 // "catch all" route
 app.get('/*', function(req, res) {
