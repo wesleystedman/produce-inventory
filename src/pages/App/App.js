@@ -1,28 +1,35 @@
 import React, { Component } from 'react';
-import { NavLink, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
 import userService from '../../utils/userService';
+import NavBar from '../../components/NavBar/NavBar';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      user: userService.getUser(),
+    }
+  }
+
   handleLogout = () => {
     userService.logout();
     this.setState({ user: null });
   }
-  
-  handleSignupOrLogin = () => {
 
+  handleSignupOrLogin = () => {
+    this.setState({ user: userService.getUser() });
   }
 
   render() {
     return (
       <div className="App">
-        <nav>
-          <NavLink to="/" exact>&nbsp;Home&nbsp;</NavLink>
-          <NavLink to="/signup" exact>&nbsp;Sign Up&nbsp;</NavLink>
-          <NavLink to="/login" exact>&nbsp;Log In&nbsp;</NavLink>
-        </nav>
+        <NavBar
+          user={this.state.user}
+          handleLogout={this.handleLogout}
+        />
         <h1>placeholder text</h1>
         <Switch>
           <Route exact path='/' render={() =>

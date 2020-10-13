@@ -15,7 +15,7 @@ app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'build')));
 
 // Unprotected API routes
-// app.use('/api/users', require('./express-src/routes/api/users'));
+app.use('/api/users', require('./express-src/routes/api/users'));
 
 // Mount auth middleware
 // app.use(require('./express-src/config/auth'));
