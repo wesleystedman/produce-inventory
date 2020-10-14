@@ -18,7 +18,7 @@ app.use(express.static(path.join(__dirname, 'build')));
 app.use('/api/users', require('./express-src/routes/api/users'));
 
 // Mount auth middleware
-// app.use(require('./express-src/config/auth'));
+app.use(require('./express-src/config/auth'));
 
 // Protected API routes
 app.use('/api/products', require('./express-src/routes/api/products'));
