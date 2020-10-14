@@ -1,8 +1,15 @@
 const mongoose = require('mongoose');
 
 const productSchema = new mongoose.Schema({
-    plu: String, // what it is
-    status: String, // where it is - incoming, warehouse, or shipped out
+    plu: { // what it is
+        type: String,
+        required: true,
+    },
+    status: { // where it is
+        type: String,
+        enum: ['incoming', 'warehouse', 'shipped'],
+        required: true,
+    },
     // TODO: break location up so we can track it over time
     location: String, // where it is - warehouse name, boat id, truck id, etc.
     grower: String, // who it came from (so we can pay them)

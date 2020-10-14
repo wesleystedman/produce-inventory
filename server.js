@@ -21,7 +21,7 @@ app.use('/api/users', require('./express-src/routes/api/users'));
 // app.use(require('./express-src/config/auth'));
 
 // Protected API routes
-// app.use('/api/scores', require('./express-src/routes/api/scores'));
+app.use('/api/products', require('./express-src/routes/api/products'));
 
 // "catch all" route
 app.get('/*', function(req, res) {

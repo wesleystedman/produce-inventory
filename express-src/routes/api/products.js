@@ -7,7 +7,10 @@ const productsCtrl = require('../../controllers/products');
 
 
 /*---------- Protected Routes ----------*/
-
+router.get('/', productsCtrl.getAll);
+router.post('/', productsCtrl.create);
+router.put('/:id', productsCtrl.update);
+router.delete('/:id', productsCtrl.deleteOne);
 
 
 module.exports = router;
