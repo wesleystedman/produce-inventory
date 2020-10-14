@@ -1,13 +1,15 @@
 const mongoose = require('mongoose');
 
 const productSchema = new mongoose.Schema({
-    type: String, // could be PLU#, or variety or something
-    status: String, // pending, in warehouse, or shipped out
-    location: String, // dependent on status? warehouse name, boat id, or truck id?
-    origin: String, // Country/region of origin
-    grower: String, // id or name
-    quantity: Number, // should probably have a unit, or maybe be an embedded doc?
-    notes: [String],
+    plu: String, // what it is
+    status: String, // where it is - incoming, warehouse, or shipped out
+    // TODO: break location up so we can track it over time
+    location: String, // where it is - warehouse name, boat id, truck id, etc.
+    grower: String, // who it came from (so we can pay them)
+    // TODO: investigate alternatives to quantity for units and whatnot
+    quantity: mongoose.Types.Decimal128, // how much we have (so we can sell it)
+    notes: String, // i.e. what's wrong with it
+    soldPrice: mongoose.Types.Decimal128 // how much it sold for
 }, {
     timestamps: true
 });
