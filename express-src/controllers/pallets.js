@@ -1,4 +1,4 @@
-const Product = require('../models/product');
+const Pallet = require('../models/pallet');
 
 module.exports = {
     getAll,
@@ -9,8 +9,8 @@ module.exports = {
 
 async function getAll(req, res) {
     try {
-        const products = await Product.find({});
-        res.status(200).json(products);
+        const pallets = await Pallet.find({});
+        res.status(200).json(pallets);
     } catch (err) {
         res.status(400).json(err);
     }
@@ -18,10 +18,10 @@ async function getAll(req, res) {
 
 async function create(req, res) {
     try {
-        const product = await Product.create(req.body);
+        const pallet = await Pallet.create(req.body);
         // TODO: return all, or return newly created?
         // getAll(req, res);
-        res.status(201).json(product);
+        res.status(201).json(pallet);
     } catch (err) {
         res.status(400).json(err);
     }
@@ -29,8 +29,8 @@ async function create(req, res) {
 
 async function update(req, res) {
     try {
-        const product = await Product.findByIdAndUpdate(req.params.id, req.body, {new: true});
-        res.status(200).json(product);
+        const pallet = await Pallet.findByIdAndUpdate(req.params.id, req.body, {new: true});
+        res.status(200).json(pallet);
     } catch (err) {
         res.status(400).json(err);
     }
@@ -38,8 +38,8 @@ async function update(req, res) {
 
 async function deleteOne(req, res) {
     try {
-        await Product.findByIdAndDelete(req.params.id);
-        res.status(200).json({msg: 'product deleted'});
+        await Pallet.findByIdAndDelete(req.params.id);
+        res.status(200).json({msg: 'pallet deleted'});
     } catch (err) {
         res.status(400).json(err);
     }
