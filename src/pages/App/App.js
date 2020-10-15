@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import './App.css';
 import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
@@ -30,10 +30,18 @@ class App extends Component {
           user={this.state.user}
           handleLogout={this.handleLogout}
         />
-        <h1>placeholder text</h1>
         <Switch>
           <Route exact path='/' render={() =>
-            <p>root</p>
+            userService.getUser() ?
+              <div>view</div>
+              :
+              <Redirect to='/login' />
+          } />
+          <Route exact path='/add' render={() =>
+            userService.getUser() ?
+              <div>add</div>
+              :
+              <Redirect to='/login' />
           } />
           <Route exact path='/signup' render={({ history }) =>
             <SignupPage

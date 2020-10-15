@@ -4,10 +4,11 @@ import { NavLink, Link } from 'react-router-dom';
 const NavBar = (props) => {
   return (
     <nav>
-      <NavLink to="/" exact>&nbsp;Home&nbsp;</NavLink>
       {
         props.user ?
           <>
+            <NavLink to="/" exact>View Inventory</NavLink>
+            <NavLink to="/add" exact>Add Pallet</NavLink>
             <Link to='' onClick={props.handleLogout}>&nbsp;Log Out&nbsp;</Link>
             <span>&nbsp;Welcome {props.user.name}&nbsp;</span>
           </>
