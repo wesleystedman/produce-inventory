@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import userService from '../../utils/userService';
 
 class SignupForm extends Component {
@@ -24,7 +24,7 @@ class SignupForm extends Component {
     try {
       await userService.signup(this.state);
       this.props.handleSignupOrLogin();
-      this.props.history.push('/');
+      this.props.history.push('/'); // TODO: send user back to protected page they were redirected from
     } catch (err) {
       this.props.updateMessage(err.message);
     }
@@ -62,7 +62,7 @@ class SignupForm extends Component {
           <div className="form-group">
             <div className="col-sm-12 text-center">
               <button className="btn btn-default" disabled={this.isFormInvalid()}>Sign Up</button>&nbsp;&nbsp;
-              <Link to='/'>Cancel</Link>
+              {/* <Link to='/'>Cancel</Link> */}
             </div>
           </div>
         </form>

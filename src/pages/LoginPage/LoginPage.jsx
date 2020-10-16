@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import './LoginPage.css';
 import userService from '../../utils/userService';
 
@@ -21,8 +21,7 @@ class LoginPage extends Component {
     try {
       await userService.login(this.state);
       this.props.handleSignupOrLogin();
-      // Successfully signed up - show GamePage
-      this.props.history.push('/');
+      this.props.history.push('/'); // TODO: send user back to protected page they were redirected from
     } catch (err) {
       alert('Invalid Credentials!'); // TODO: replace alert
     }
@@ -46,7 +45,7 @@ class LoginPage extends Component {
           <div className="form-group">
             <div className="col-sm-12 text-center">
               <button className="btn btn-default">Log In</button>&nbsp;&nbsp;&nbsp;
-              <Link to='/'>Cancel</Link>
+              {/* <Link to='/'>Cancel</Link> */}
             </div>
           </div>
         </form>
