@@ -10,7 +10,14 @@ export default {
 };
 
 function getAll() {
-    return fetch(BASE_URL).then(res => res.json());
+    const options = {
+        method: 'GET',
+        headers: {
+            'Content-type': 'application/json',
+            'Authorization': 'Bearer ' + tokenService.getToken()
+        },
+    };
+    return fetch(BASE_URL, options).then(res => res.json());
 }
 
 function create(pallet) {

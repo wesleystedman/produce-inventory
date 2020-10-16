@@ -23,19 +23,19 @@ class App extends Component {
     };
   }
 
-  getDistinctSpecies() {
+  getDistinctSpecies = () => {
     return Array.from(new Set(this.state.pallets.map(pallet => pallet.species)));
   }
 
-  getDistinctVarieties(species) {
+  getDistinctVarieties = (species) => {
     return Array.from(new Set(this.state.pallets.filter(pallet => pallet.species === species).map(pallet => pallet.variety)));
   }
 
-  getDistinctSizes(species, variety) {
+  getDistinctSizes = (species, variety) => {
     return Array.from(new Set(this.state.pallets.filter(pallet => pallet.species === species && pallet.variety === variety).map(pallet => pallet.size)));
   }
 
-  getSomePallets(species, variety, size) {
+  getSomePallets = (species, variety, size) => {
     return this.state.pallets.filter(pallet => pallet.species === species && pallet.variety === variety && pallet.size === size);
   }
 
