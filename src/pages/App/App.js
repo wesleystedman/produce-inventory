@@ -1,22 +1,45 @@
 import React, { Component } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import './App.css';
+// pages
 import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
-import userService from '../../utils/userService';
-import NavBar from '../../components/NavBar/NavBar';
 import FruitSelectPage from '../FruitSelectPage/FruitSelectPage';
 import VarietySelectPage from '../VarietySelectPage/VarietySelectPage';
 import SizeSelectPage from '../SizeSelectPage/SizeSelectPage';
 import PalletListPage from '../PalletListPage/PalletListPage';
+// components
+import NavBar from '../../components/NavBar/NavBar';
+// utils
+import userService from '../../utils/userService';
+import palletService from '../../utils/palletService';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       user: userService.getUser(),
-    }
+      pallets: [],
+    };
   }
+
+  getDistinctSpecies() {
+    return Array.from(new Set(this.state.pallets.map(pallet => pallet.species)));
+  }
+
+  getDistinctVarieties(species) {
+    return Array.from(new Set(this.state.pallets.filter(pallet => pallet.species === species).map(pallet => pallet.variety)));
+  }
+
+  getDistinctSizes(species, variety) {
+    return Array.from(new Set(this.state.pallets.filter(pallet => pallet.species === species && pallet.variety === variety).map(pallet => pallet.size)));
+  }
+
+  getXxxPallets(species, variety, size) {
+    return this.state.pallets.filter(pallet => pallet.species === species && pallet.variety === variety && pallet.size === size);
+  }
+
+  /*--- Handler Callbacks ---*/
 
   handleLogout = () => {
     userService.logout();
@@ -25,6 +48,12 @@ class App extends Component {
 
   handleSignupOrLogin = () => {
     this.setState({ user: userService.getUser() });
+  }
+
+  /*--- Lifecycle Methods ---*/
+  async componentDidMount() {
+    const pallets = await palletService.getAll();
+    this.setState({ pallets });
   }
 
   render() {
@@ -56,27 +85,36 @@ class App extends Component {
               <Redirect to='/login' />
           } />
 
+          {/* TODO: refactor to if-else, but lose implicit return? */}
           <Route exact path='/' render={() =>
             userService.getUser() ?
-              <FruitSelectPage />
+              <FruitSelectPage
+                species={this.getDistinctSpecies()}
+              />
               :
               <Redirect to='/login' />
           } />
-          <Route path='/:fruit' render={() =>
+          <Route path='/:fruit' render={(props) =>
             userService.getUser() ?
-              <VarietySelectPage />
+              <VarietySelectPage
+                varieties={this.getDistinctVarieties(props.match.params.fruit)}
+              />
               :
               <Redirect to='/login' />
           } />
-          <Route path='/:fruit/:var' render={() =>
+          <Route path='/:fruit/:var' render={(props) =>
             userService.getUser() ?
-              <SizeSelectPage />
+              <SizeSelectPage
+                sizes={this.getDistinctSizes(props.match.params.fruit, props.match.params.var)}
+              />
               :
               <Redirect to='/login' />
           } />
-          <Route path='/:fruit/:var/:size' render={() =>
+          <Route path='/:fruit/:var/:size' render={(props) =>
             userService.getUser() ?
-              <PalletListPage />
+              <PalletListPage
+                pallets={this.getXxxPallets(props.match.params.fruit, props.match.params.var, props.match.params.size)}
+              />
               :
               <Redirect to='/login' />
           } />
