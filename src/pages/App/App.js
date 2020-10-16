@@ -35,7 +35,7 @@ class App extends Component {
     return Array.from(new Set(this.state.pallets.filter(pallet => pallet.species === species && pallet.variety === variety).map(pallet => pallet.size)));
   }
 
-  getXxxPallets(species, variety, size) {
+  getSomePallets(species, variety, size) {
     return this.state.pallets.filter(pallet => pallet.species === species && pallet.variety === variety && pallet.size === size);
   }
 
@@ -113,7 +113,7 @@ class App extends Component {
           <Route path='/:fruit/:var/:size' render={(props) =>
             userService.getUser() ?
               <PalletListPage
-                pallets={this.getXxxPallets(props.match.params.fruit, props.match.params.var, props.match.params.size)}
+                pallets={this.getSomePallets(props.match.params.fruit, props.match.params.var, props.match.params.size)}
               />
               :
               <Redirect to='/login' />
