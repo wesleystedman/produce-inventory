@@ -5,6 +5,10 @@ import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
 import userService from '../../utils/userService';
 import NavBar from '../../components/NavBar/NavBar';
+import FruitSelectPage from '../FruitSelectPage/FruitSelectPage';
+import VarietySelectPage from '../VarietySelectPage/VarietySelectPage';
+import SizeSelectPage from '../SizeSelectPage/SizeSelectPage';
+import PalletListPage from '../PalletListPage/PalletListPage';
 
 class App extends Component {
   constructor() {
@@ -31,18 +35,6 @@ class App extends Component {
           handleLogout={this.handleLogout}
         />
         <Switch>
-          <Route exact path='/' render={() =>
-            userService.getUser() ?
-              <div>view</div>
-              :
-              <Redirect to='/login' />
-          } />
-          <Route exact path='/add' render={() =>
-            userService.getUser() ?
-              <div>add</div>
-              :
-              <Redirect to='/login' />
-          } />
           <Route exact path='/signup' render={({ history }) =>
             <SignupPage
               history={history}
@@ -54,6 +46,39 @@ class App extends Component {
               history={history}
               handleSignupOrLogin={this.handleSignupOrLogin}
             />
+          } />
+
+          {/* TODO: add pallet route */}
+          <Route exact path='/add' render={() =>
+            userService.getUser() ?
+              <div>add</div>
+              :
+              <Redirect to='/login' />
+          } />
+
+          <Route exact path='/' render={() =>
+            userService.getUser() ?
+              <FruitSelectPage />
+              :
+              <Redirect to='/login' />
+          } />
+          <Route path='/:fruit' render={() =>
+            userService.getUser() ?
+              <VarietySelectPage />
+              :
+              <Redirect to='/login' />
+          } />
+          <Route path='/:fruit/:var' render={() =>
+            userService.getUser() ?
+              <SizeSelectPage />
+              :
+              <Redirect to='/login' />
+          } />
+          <Route path='/:fruit/:var/:size' render={() =>
+            userService.getUser() ?
+              <PalletListPage />
+              :
+              <Redirect to='/login' />
           } />
         </Switch>
       </div>
