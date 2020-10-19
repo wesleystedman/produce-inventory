@@ -4,9 +4,11 @@ import { Link } from 'react-router-dom';
 const SizeSelectPage = (props) => (
     <div>
         <div>
-            <div>Select Size</div>
-            <div>Fruit: {props.species}</div>
-            <div>Variety: {props.variety}</div>
+            <h3>Select Size</h3>
+            <div className="row justify-content-center">
+                <h5 className="col-2">Fruit: {props.species}</h5>
+                <h5 className="col-2">Variety: {props.variety}</h5>
+            </div>
         </div>
         <div>
             {props.sizes.map((size, idx) => (

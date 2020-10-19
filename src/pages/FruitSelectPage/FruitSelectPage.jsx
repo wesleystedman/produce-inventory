@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const FruitSelectPage = (props) => (
     <div>
-        <div>Select Fruit</div>
+        <h3>Select Fruit</h3>
         <div>
             {props.species.map((spec, idx) => (
                 <div key={idx} >

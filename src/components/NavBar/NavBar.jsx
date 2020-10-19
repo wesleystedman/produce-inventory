@@ -6,15 +6,15 @@ const NavBar = (props) => (
     {
       props.user ?
         <>
-          <NavLink to="/" exact>&nbsp;View Inventory&nbsp;</NavLink>
-          <NavLink to="/add" exact>&nbsp;Add Pallet&nbsp;</NavLink>
-          <Link to='' onClick={props.handleLogout}>&nbsp;Log Out&nbsp;</Link>
-          <span>&nbsp;Welcome {props.user.name}&nbsp;</span>
+          <NavLink to="/" exact>&nbsp;&nbsp;View Inventory&nbsp;&nbsp;</NavLink>
+          <NavLink to="/add" exact>&nbsp;&nbsp;Add Pallet&nbsp;&nbsp;</NavLink>
+          <Link to='' onClick={props.handleLogout}>&nbsp;&nbsp;Log Out&nbsp;&nbsp;</Link>
+          <span>&nbsp;&nbsp;Welcome {props.user.name}&nbsp;&nbsp;</span>
         </>
         :
         <>
-          <NavLink to="/signup" exact>&nbsp;Sign Up&nbsp;</NavLink>
-          <NavLink to="/login" exact>&nbsp;Log In&nbsp;</NavLink>
+          <NavLink to="/signup" exact>&nbsp;&nbsp;Sign Up&nbsp;&nbsp;</NavLink>
+          <NavLink to="/login" exact>&nbsp;&nbsp;Log In&nbsp;&nbsp;</NavLink>
         </>
     }
   </nav>

@@ -5,10 +5,12 @@ const PalletListPage = (props) => (
     // props.pallets
     <div>
         <div>
-            <div>Pallets</div>
-            <div>Fruit: {props.species}</div>
-            <div>Variety: {props.variety}</div>
-            <div>Size: {props.size}</div>
+            <h3>Pallets</h3>
+            <div className="row justify-content-center">
+                <h5 className="col-2">Fruit: {props.species}</h5>
+                <h5 className="col-2">Variety: {props.variety}</h5>
+                <h5 className="col-2">Size: {props.size}</h5>
+            </div>
         </div>
         <table className="table">
             <thead>
