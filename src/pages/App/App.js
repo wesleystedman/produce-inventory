@@ -129,7 +129,9 @@ class App extends Component {
               :
               <Redirect to='/login' />
           } />
-          {/* <Route exact path='/:fruit/:var/:size/:id' render={(props) => } /> */}
+          <Route exact path='/:fruit/:var/:size/:id' render={(props) =>
+            <div>Pallet Edit Not Yet Implemented</div>
+          } />
         </Switch>
       </div>
     );
