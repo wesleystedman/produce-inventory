@@ -27,6 +27,8 @@ const PalletListPage = (props) => (
                     <th>Boat #</th>
                     <th>Load #</th>
                     <th>Returned</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
             <tbody>

@@ -35,7 +35,6 @@ const AddPalletPage = (props) => {
                 newPallet[key] = state[key].value;
                 state[key].reset();
             }
-            console.log(newPallet);
             const retPallet = await palletService.create(newPallet);
             props.addNewPalletToState(retPallet);
         } catch (err) {

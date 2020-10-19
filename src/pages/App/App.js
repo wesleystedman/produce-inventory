@@ -41,7 +41,7 @@ class App extends Component {
   }
 
   addNewPalletToState = (pallet) => {
-    this.setState({pallets: [...this.state.pallets, pallet]});
+    this.setState({ pallets: [...this.state.pallets, pallet] });
   }
 
   /*--- Handler Callbacks ---*/
@@ -129,6 +129,7 @@ class App extends Component {
               :
               <Redirect to='/login' />
           } />
+          {/* <Route exact path='/:fruit/:var/:size/:id' render={(props) => } /> */}
         </Switch>
       </div>
     );

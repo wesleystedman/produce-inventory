@@ -18,10 +18,8 @@ const PalletCard = (props) => (
         <td>{props.pallet.load}</td>
         <td>{props.pallet.isReturned ? 'Yes' : 'No'}</td>
 
-        {/* <td>
-            <Link>Edit</Link>
-            <Link>Delete</Link>
-        </td> */}
+        <td><Link to={`/${props.pallet.species}/${props.pallet.variety}/${props.pallet.size}/${props.pallet._id}`}>Edit</Link></td>
+        <td><Link>Delete</Link></td>
     </tr>
 );
 
