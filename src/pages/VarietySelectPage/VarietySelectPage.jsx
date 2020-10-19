@@ -3,7 +3,10 @@ import { Link } from 'react-router-dom';
 
 const VarietySelectPage = (props) => (
     <div>
-        VarietySelectPage
+        <div>
+            <div>Select Variety</div>
+            <div>Fruit: {props.species}</div>
+        </div>
         <ul>
             {props.varieties.map((variety, idx) => (
                 <li key={idx} >
