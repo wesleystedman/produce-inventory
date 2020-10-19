@@ -36,7 +36,8 @@ const AddPalletPage = (props) => {
                 state[key].reset();
             }
             console.log(newPallet);
-            await palletService.create(newPallet);
+            const retPallet = await palletService.create(newPallet);
+            props.addNewPalletToState(retPallet);
         } catch (err) {
             console.log(err);
             setMessage('Form submission failed.  See the console for details.');

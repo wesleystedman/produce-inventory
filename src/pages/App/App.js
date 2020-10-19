@@ -40,6 +40,10 @@ class App extends Component {
     return this.state.pallets.filter(pallet => pallet.species === species && pallet.variety === variety && pallet.size === size);
   }
 
+  addNewPalletToState = (pallet) => {
+    this.setState({pallets: [...this.state.pallets, pallet]});
+  }
+
   /*--- Handler Callbacks ---*/
 
   handleLogout = () => {
@@ -80,7 +84,9 @@ class App extends Component {
 
           <Route exact path='/add' render={() =>
             userService.getUser() ?
-              <AddPalletPage />
+              <AddPalletPage
+                addNewPalletToState={this.addNewPalletToState}
+              />
               :
               <Redirect to='/login' />
           } />
