@@ -39,9 +39,9 @@ const palletSchema = new mongoose.Schema({
         required: true,
         min: 0
     },
-    fumigated: { // N = not treated (might need fumigation), I = inspected (won't need fumigation)
+    fumigated: { // I = inspected (won't need fumigation), N = not treated (might need fumigation)
         type: String,
-        enum: ['N','I']
+        enum: ['I', 'N', '']
     },
     // status, location, and other metadata
     packDate: Date, // data comes from shipper

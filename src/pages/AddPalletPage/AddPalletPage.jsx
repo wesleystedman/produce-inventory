@@ -30,10 +30,13 @@ const AddPalletPage = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await palletService.create(state);
-            for (const palletField of Object.values(state)) {
-                palletField.reset();
+            const newPallet = {};
+            for (const key of Object.keys(state)) {
+                newPallet[key] = state[key].value;
+                state[key].reset();
             }
+            console.log(newPallet);
+            await palletService.create(newPallet);
         } catch (err) {
             console.log(err);
             setMessage('Form submission failed.  See the console for details.');
@@ -93,8 +96,8 @@ const AddPalletPage = (props) => {
                                 <label className="col-form-label col-sm-4">Fumigated</label>
                                 <select className="form-control col-sm" type="text" name="fumigated" {...state.fumigated.formAttrs}>
                                     <option value=""></option>
-                                    <option value="N">Not Necessary</option>
                                     <option value="I">Inspected</option>
+                                    <option value="N">Not Necessary</option>
                                 </select>
                             </div>
                             <div className="form-group row">
