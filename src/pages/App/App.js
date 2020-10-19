@@ -8,6 +8,7 @@ import FruitSelectPage from '../FruitSelectPage/FruitSelectPage';
 import VarietySelectPage from '../VarietySelectPage/VarietySelectPage';
 import SizeSelectPage from '../SizeSelectPage/SizeSelectPage';
 import PalletListPage from '../PalletListPage/PalletListPage';
+import AddPalletPage from '../AddPalletPage/AddPalletPage';
 // components
 import NavBar from '../../components/NavBar/NavBar';
 // utils
@@ -80,12 +81,11 @@ class App extends Component {
           {/* TODO: add pallet route */}
           <Route exact path='/add' render={() =>
             userService.getUser() ?
-              <div>add</div>
+              <AddPalletPage />
               :
               <Redirect to='/login' />
           } />
 
-          {/* TODO: refactor to if-else, but lose implicit return? */}
           <Route exact path='/' render={() =>
             userService.getUser() ?
               <FruitSelectPage
