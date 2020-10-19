@@ -78,7 +78,6 @@ class App extends Component {
             />
           } />
 
-          {/* TODO: add pallet route */}
           <Route exact path='/add' render={() =>
             userService.getUser() ?
               <AddPalletPage />

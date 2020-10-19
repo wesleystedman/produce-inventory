@@ -19,8 +19,6 @@ async function getAll(req, res) {
 async function create(req, res) {
     try {
         const pallet = await Pallet.create(req.body);
-        // TODO: return all, or return newly created?
-        // getAll(req, res);
         res.status(201).json(pallet);
     } catch (err) {
         res.status(400).json(err);
