@@ -9,6 +9,7 @@ import VarietySelectPage from '../VarietySelectPage/VarietySelectPage';
 import SizeSelectPage from '../SizeSelectPage/SizeSelectPage';
 import PalletListPage from '../PalletListPage/PalletListPage';
 import AddPalletPage from '../AddPalletPage/AddPalletPage';
+import EditPalletPage from '../EditPalletPage/EditPalletPage';
 // components
 import NavBar from '../../components/NavBar/NavBar';
 // utils
@@ -90,6 +91,16 @@ class App extends Component {
               :
               <Redirect to='/login' />
           } />
+          <Route exact path='/:id/edit' render={(props) =>
+            userService.getUser() ?
+              <EditPalletPage
+                pallet={this.state.pallets.find(pallet => pallet._id.toString() === props.match.params.id)}
+                id={props.match.params.id}
+                history={props.history}
+              />
+              :
+              <Redirect to='/login' />
+          } />
 
           <Route exact path='/' render={() =>
             userService.getUser() ?
@@ -128,9 +139,6 @@ class App extends Component {
               />
               :
               <Redirect to='/login' />
-          } />
-          <Route exact path='/:fruit/:var/:size/:id' render={(props) =>
-            <div>Pallet Edit Not Yet Implemented</div>
           } />
         </Switch>
       </div>

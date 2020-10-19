@@ -32,7 +32,7 @@ function create(pallet) {
     return fetch(BASE_URL, options).then(res => res.json());
 }
 
-function update(pallet) {
+function update(pallet, id) {
     const options = {
         method: 'PUT',
         headers: {
@@ -41,7 +41,7 @@ function update(pallet) {
         },
         body: JSON.stringify(pallet)
     };
-    return fetch((BASE_URL + pallet.id), options).then(res => res.json());
+    return fetch((BASE_URL + id), options).then(res => res.json());
 }
 
 function deleteOne(id) {

@@ -19,8 +19,8 @@ const PalletCard = (props) => (
         <td>{props.pallet.load}</td>
         <td>{props.pallet.isReturned ? 'Yes' : 'No'}</td>
 
-        <td><Link to={`/${props.pallet.species}/${props.pallet.variety}/${props.pallet.size}/${props.pallet._id}`}>Edit</Link></td>
-        <td><Link onClick={() => palletService.deleteOne(props.pallet._id)}>Delete</Link></td>
+        <td><Link to={`/${props.pallet._id}/edit`}>Edit</Link></td>
+        <td><Link to={props.parentLink} onClick={() => palletService.deleteOne(props.pallet._id)}>Delete</Link></td>
         {/* FIXME: the Delete onClick doesn't update the client's state */}
     </tr>
 );

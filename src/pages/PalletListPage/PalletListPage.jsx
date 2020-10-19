@@ -36,6 +36,7 @@ const PalletListPage = (props) => (
                     <PalletCard
                         key={idx}
                         pallet={pallet}
+                        parentLink={`/${props.species}/${props.variety}/${props.size}`}
                     />
                 ))}
             </tbody>
