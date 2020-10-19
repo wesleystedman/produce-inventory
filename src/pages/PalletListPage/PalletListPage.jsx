@@ -24,8 +24,8 @@ const PalletListPage = (props) => (
                     <th>Packaging</th>
                     <th>Repack</th>
                     <th>Fumigated</th>
-                    <th>Boat</th>
-                    <th>Load</th>
+                    <th>Boat #</th>
+                    <th>Load #</th>
                     <th>Returned</th>
                 </tr>
             </thead>
