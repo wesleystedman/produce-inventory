@@ -4,10 +4,10 @@ const Pallet = require('./models/pallet');
 const fs = require('fs');
 
 Pallet.deleteMany({}, () => {
-    fs.readFile('./produce-inv-sample-data.txt.ignore', 'utf8', async (err, data) => {
+    fs.readFile(process.argv[2], 'utf8', async (err, data) => {
         if (err) return console.log(err);
-        data = data.split('\n');
-        data = data.slice(1, 11).map(line => {
+        lines = data.split('\n');
+        pallets = lines.slice(1).map(line => {
             const vals = line.split('\t').map(s => s.trim());
             const doc = {
                 palletID: vals[0],
@@ -31,8 +31,8 @@ Pallet.deleteMany({}, () => {
             };
             return doc;
         });
-        await Pallet.create(data);
-        console.log(data.length);
+        await Pallet.create(pallets);
+        console.log(pallets.length);
         process.exit(0);
     });
 });
