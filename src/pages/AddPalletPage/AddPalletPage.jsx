@@ -40,11 +40,6 @@ const AddPalletPage = (props) => {
         }
     }
 
-    // TODO: validator
-    const isFormInvalid = () => {
-        return false;
-    }
-
     return (
         <div>
             <h2>Add Pallet</h2>
@@ -54,15 +49,15 @@ const AddPalletPage = (props) => {
                         <div className="col-sm-3">
                             <div className="form-group row">
                                 <label className="col-form-label col-sm-4">Pallet ID</label>
-                                <input className="form-control col-sm" type="text" name="palletID" {...state.palletID.formAttrs} />
+                                <input className="form-control col-sm" type="text" required name="palletID" {...state.palletID.formAttrs} />
                             </div>
                             <div className="form-group row">
                                 <label className="col-form-label col-sm-4">Fruit</label>
-                                <input className="form-control col-sm" type="text" name="species" {...state.species.formAttrs} />
+                                <input className="form-control col-sm" type="text" required minLength="2" maxLength="2" name="species" {...state.species.formAttrs} />
                             </div>
                             <div className="form-group row">
                                 <label className="col-form-label col-sm-4">Variety</label>
-                                <input className="form-control col-sm" type="text" name="variety" {...state.variety.formAttrs} />
+                                <input className="form-control col-sm" type="text" required minLength="2" maxLength="2" name="variety" {...state.variety.formAttrs} />
                             </div>
                             <div className="form-group row">
                                 <label className="col-form-label col-sm-4">Variety Name</label>
@@ -70,11 +65,11 @@ const AddPalletPage = (props) => {
                             </div>
                             <div className="form-group row">
                                 <label className="col-form-label col-sm-4">Size</label>
-                                <input className="form-control col-sm" type="text" name="size" {...state.size.formAttrs} />
+                                <input className="form-control col-sm" type="text" required name="size" {...state.size.formAttrs} />
                             </div>
                             <div className="form-group row">
                                 <label className="col-form-label col-sm-4">Packaging</label>
-                                <input className="form-control col-sm" type="text" name="packaging" {...state.packaging.formAttrs} />
+                                <input className="form-control col-sm" type="text" required name="packaging" {...state.packaging.formAttrs} />
                             </div>
                         </div>
                         <div className="col-sm-3">
@@ -92,11 +87,15 @@ const AddPalletPage = (props) => {
                             </div>
                             <div className="form-group row">
                                 <label className="col-form-label col-sm-4">Box Count</label>
-                                <input className="form-control col-sm" type="number" name="boxCount" {...state.boxCount.formAttrs} />
+                                <input className="form-control col-sm" type="number" required min="0" name="boxCount" {...state.boxCount.formAttrs} />
                             </div>
                             <div className="form-group row">
                                 <label className="col-form-label col-sm-4">Fumigated</label>
-                                <input className="form-control col-sm" type="text" name="fumigated" {...state.fumigated.formAttrs} />
+                                <select className="form-control col-sm" type="text" name="fumigated" {...state.fumigated.formAttrs}>
+                                    <option value=""></option>
+                                    <option value="N">Not Necessary</option>
+                                    <option value="I">Inspected</option>
+                                </select>
                             </div>
                             <div className="form-group row">
                                 <label className="col-form-label col-sm-4">Pack Date</label>
@@ -106,7 +105,7 @@ const AddPalletPage = (props) => {
                         <div className="col-sm-3">
                             <div className="form-group row">
                                 <label className="col-form-label col-sm-4">Boat #</label>
-                                <input className="form-control col-sm" type="text" name="boat" {...state.boat.formAttrs} />
+                                <input className="form-control col-sm" type="text" required name="boat" {...state.boat.formAttrs} />
                             </div>
                             <div className="form-group row">
                                 <label className="col-form-label col-sm-4">Arrival Date</label>
@@ -126,11 +125,17 @@ const AddPalletPage = (props) => {
                             </div>
                             <div className="form-group row">
                                 <label className="col-form-label col-sm-4">Status</label>
-                                <input className="form-control col-sm" type="text" name="status" {...state.status.formAttrs} />
+                                <select className="form-control col-sm" type="text" required name="status" {...state.status.formAttrs}>
+                                    <option value="pending">Pending</option>
+                                    <option value="warehouse">Warehouse</option>
+                                    <option value="staging">Staging</option>
+                                    <option value="loading">Loading</option>
+                                    <option value="shipped">Shipped</option>
+                                </select>
                             </div>
                         </div>
                     </div>
-                    <button className="btn btn-default border" disabled={isFormInvalid()}>Submit Pallet</button>
+                    <button className="btn btn-default border">Submit Pallet</button>
                 </form><br/>
                 <div className="row justify-content-center">
                     <div className={`col-3 alert ${message ? 'alert-danger' : ''}`}>{message}</div>
