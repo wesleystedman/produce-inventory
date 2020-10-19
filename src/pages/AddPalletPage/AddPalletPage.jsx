@@ -1,9 +1,11 @@
 import React from 'react';
+import { useState } from 'react';
 import useInput from '../../hooks/useInput';
 import palletService from '../../utils/palletService';
 
 const AddPalletPage = (props) => {
-    // state var for every field
+    const [message, setMessage] = useState('');
+
     const state = {
         palletID: useInput(''),
         species: useInput(''),
@@ -23,23 +25,29 @@ const AddPalletPage = (props) => {
         load: useInput(''),
         isReturned: useInput(false),
         status: useInput('pending'),
-    }
+    };
 
-    // handle submit
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            // await palletService.create()
+            await palletService.create(state);
+            for (const palletField of Object.values(state)) {
+                palletField.reset();
+            }
         } catch (err) {
-
+            console.log(err);
+            setMessage('Form submission failed.  See the console for details.');
         }
     }
 
-    // validator
+    // TODO: validator
+    const isFormInvalid = () => {
+        return false;
+    }
 
     return (
         <div>
-            <div>Add Pallet</div>
+            <h2>Add Pallet</h2>
             <div>
                 <form onSubmit={handleSubmit}>
                     <div className="row justify-content-center">
@@ -122,7 +130,11 @@ const AddPalletPage = (props) => {
                             </div>
                         </div>
                     </div>
-                </form>
+                    <button className="btn btn-default border" disabled={isFormInvalid()}>Submit Pallet</button>
+                </form><br/>
+                <div className="row justify-content-center">
+                    <div className={`col-3 alert ${message ? 'alert-danger' : ''}`}>{message}</div>
+                </div>
             </div>
         </div>
     );
