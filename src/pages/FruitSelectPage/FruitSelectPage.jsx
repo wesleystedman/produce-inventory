@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom';
 
 const FruitSelectPage = (props) => (
     <div>
-        Select Fruit
-        <ul>
+        <div>Select Fruit</div>
+        <div>
             {props.species.map((spec, idx) => (
-                <li key={idx} >
+                <div key={idx} >
                     <Link to={`/${spec}`}>{spec}</Link>
-                </li>
+                </div>
             ))}
-        </ul>
+        </div>
     </div>
 );
 

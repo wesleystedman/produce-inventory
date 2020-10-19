@@ -7,13 +7,13 @@ const VarietySelectPage = (props) => (
             <div>Select Variety</div>
             <div>Fruit: {props.species}</div>
         </div>
-        <ul>
+        <div>
             {props.varieties.map((variety, idx) => (
-                <li key={idx} >
+                <div key={idx} >
                     <Link to={`/${props.species}/${variety}`}>{variety}</Link>
-                </li>
+                </div>
             ))}
-        </ul>
+        </div>
     </div>
 );
 

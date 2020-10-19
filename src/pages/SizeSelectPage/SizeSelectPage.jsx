@@ -8,14 +8,13 @@ const SizeSelectPage = (props) => (
             <div>Fruit: {props.species}</div>
             <div>Variety: {props.variety}</div>
         </div>
-        
-        <ul>
+        <div>
             {props.sizes.map((size, idx) => (
-                <li key={idx} >
+                <div key={idx} >
                     <Link to={`/${props.species}/${props.variety}/${size}`}>{size}</Link>
-                </li>
+                </div>
             ))}
-        </ul>
+        </div>
     </div>
 );
 
