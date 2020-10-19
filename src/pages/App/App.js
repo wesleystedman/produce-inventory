@@ -94,26 +94,32 @@ class App extends Component {
               :
               <Redirect to='/login' />
           } />
-          <Route path='/:fruit' render={(props) =>
+          <Route exact path='/:fruit' render={(props) =>
             userService.getUser() ?
               <VarietySelectPage
                 varieties={this.getDistinctVarieties(props.match.params.fruit)}
+                species={props.match.params.fruit}
               />
               :
               <Redirect to='/login' />
           } />
-          <Route path='/:fruit/:var' render={(props) =>
+          <Route exact path='/:fruit/:var' render={(props) =>
             userService.getUser() ?
               <SizeSelectPage
                 sizes={this.getDistinctSizes(props.match.params.fruit, props.match.params.var)}
+                species={props.match.params.fruit}
+                variety={props.match.params.var}
               />
               :
               <Redirect to='/login' />
           } />
-          <Route path='/:fruit/:var/:size' render={(props) =>
+          <Route exact path='/:fruit/:var/:size' render={(props) =>
             userService.getUser() ?
               <PalletListPage
                 pallets={this.getSomePallets(props.match.params.fruit, props.match.params.var, props.match.params.size)}
+                species={props.match.params.fruit}
+                variety={props.match.params.var}
+                size={props.match.params.size}
               />
               :
               <Redirect to='/login' />
