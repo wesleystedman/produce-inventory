@@ -52,6 +52,11 @@ const palletSchema = new mongoose.Schema({
     arrivalDate: Date,
     warehouseID: String, // which warehouse it's in
     load: String, // what load it will go out on
+    isReturned: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
     status: {
         type: String,
         required: true,
@@ -63,11 +68,6 @@ const palletSchema = new mongoose.Schema({
             'shipped', // has been shipped out
         ],
         default: 'pending'
-    },
-    isReturned: {
-        type: Boolean,
-        required: true,
-        default: false
     },
 }, {
     timestamps: true
